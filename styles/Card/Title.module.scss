@@ -1,0 +1,19 @@
+.block {
+    display: inline-block;
+    position: relative;
+}
+.title {
+    font-size: 2em;
+    margin: 0.5em 0;
+}
+.code {
+    color: #777;
+    letter-spacing: 0.1em;
+}
+.year {
+    position: absolute;
+    top: 1em;
+    right: -3em;
+    color: #38be38;
+    font-weight: 500;
+}

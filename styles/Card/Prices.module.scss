@@ -1,0 +1,24 @@
+.block {
+    display: flex;
+}
+.priceBlock {
+    display: flex;
+    flex-direction: column;
+}
+.mainPrice {
+    font-size: 2em;
+}
+.button {
+    border: none;
+    border-radius: 0.3em;
+    color: #fff;
+    background: linear-gradient(90deg, rgb(11, 112, 28) 0%, rgb(4, 253, 83) 100%);
+    font-weight: 400;
+    padding: 0.8em 4em;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+}
+
+.green {
+  color: #38be38;
+}
