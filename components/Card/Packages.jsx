@@ -1,13 +1,31 @@
-import styles from "../../styles/Card/Characteristic.module.scss";
+import { useState } from "react";
+import style from "../../styles/Card/Package.module.scss";
+import { Modal } from "../Modal";
 
-export const Packages = () => {
+export const Packages = (props) => {
+    const [modalActive, setModalActive] = useState(false)
+
     return (
-        <div className="functions">
-            <div className={styles.title}>
+        <div className={style.container}>
+            <div className={style.title}>
                 Пакеты
             </div>
-            <div className={styles.description}>
-                Зеркала супер
+            <div className={style.description}>
+                {props.options[0] && props.options[0].name}
+                <button
+                    className={style.descriptionBtn}
+                    onClick={() => {
+                        console.log(modalActive);
+                        setModalActive(true)
+                    }}
+                >
+                    (+ ещe {props.options.length} пакета)
+                </button>
+                <Modal
+                    active={modalActive}
+                    setActive={setModalActive}
+                    options={props.options}
+                />
             </div>
         </div>
     )

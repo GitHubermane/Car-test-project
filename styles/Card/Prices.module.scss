@@ -1,5 +1,6 @@
 .block {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr;
 }
 .priceBlock {
     display: flex;
@@ -9,16 +10,29 @@
     font-size: 2em;
 }
 .button {
+    justify-self: end;
     border: none;
     border-radius: 0.3em;
     color: #fff;
     background: linear-gradient(90deg, rgb(11, 112, 28) 0%, rgb(4, 253, 83) 100%);
     font-weight: 400;
-    padding: 0.8em 4em;
+    width: 12em;
+    height: 4em;
     letter-spacing: 0.1em;
     cursor: pointer;
 }
-
 .green {
-  color: #38be38;
+    color: #38be38;
+}
+
+@media (max-width: 767px) {
+    .extraPrice {
+        display: none;
+    }
+    .block {
+        grid-template-columns: 1fr;
+    }
+    .button {
+        align-self: end;
+    }
 }

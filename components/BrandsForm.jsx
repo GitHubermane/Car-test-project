@@ -1,6 +1,7 @@
 import { Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { setCars, toggleIsLoading } from "../Redux/Slice/CarsSlice";
+import style from "../styles/BrandsForm.module.scss"
 
 export const BrandsForm = () => {
     const brands = [
@@ -42,7 +43,7 @@ export const BrandsForm = () => {
         setSubmitting(false)
     }
     return (
-        <div>
+        <div className={style.container}>
             <Formik
                 initialValues={initialValues}
                 enableReinitialize
@@ -50,14 +51,24 @@ export const BrandsForm = () => {
             >
                 {({ isSubmitting }) => (
                     <Form>
-                        <Field as="select" name="brand">
+                        <Field
+                            className={style.input}
+                            as="select"
+                            name="brand"
+                        >
                             {brands.map((e) => (
                                 <option key={e.id} value={e.name}>
                                     {e.name}
                                 </option>
                             ))}
                         </Field>
-                        <button type="submit" disabled={isSubmitting}>Submit</button>
+                        <button
+                            className={style.btn}
+                            type="submit"
+                            disabled={isSubmitting}
+                        >
+                            Submit
+                        </button>
                     </Form>
                 )}
             </Formik>

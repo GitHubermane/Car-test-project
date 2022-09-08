@@ -1,4 +1,5 @@
 import styles from '../../styles/Card/Title.module.scss'
+
 export const Title = (props) => {
 
     return (

@@ -3,5 +3,11 @@
     color: #999;
     text-transform: uppercase;
     letter-spacing: 0.2em;
+    display: block;
 }
 
+@media (max-width: 767px) {
+    .description {
+        display: block !important;
+    }
+}
