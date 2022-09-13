@@ -1,6 +1,6 @@
 import { Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
-import { setCars, toggleIsLoading } from "../Redux/Slice/CarsSlice";
+import { setCars, setCurrentPage, toggleIsLoading } from "../Redux/Slice/CarsSlice";
 import style from "../styles/BrandsForm.module.scss"
 
 export const BrandsForm = () => {
@@ -40,6 +40,7 @@ export const BrandsForm = () => {
         const cars = await response.json()
         dispatch(setCars(cars.list))
         dispatch(toggleIsLoading(false))
+        dispatch(setCurrentPage(1))
         setSubmitting(false)
     }
     return (

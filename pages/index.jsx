@@ -1,21 +1,48 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Card } from "../components/Card/Card";
-import {BrandsForm} from "../components/BrandsForm"
-import { setCars } from "../Redux/Slice/CarsSlice";
+import { BrandsForm } from "../components/BrandsForm"
+import { setCars, setCurrentPage } from "../Redux/Slice/CarsSlice";
 import { useEffect } from "react";
 import { Loader } from "../components/Loader";
 import style from '../styles/Home.module.scss'
+import { Pagination } from "../components/Pagination";
 
 export default function Home(props) {
-  const cars = useSelector((state) => state.Cars.cars)
+  
+  const { cars, currentPage } = useSelector((state) => state.Cars)
   const isLoading = useSelector((state) => state.Cars.isLoading)
   const dispatch = useDispatch()
-  useEffect(() => { dispatch(setCars(props.cars.list)) }, [])
+
+  useEffect(
+    () => {
+      dispatch(setCars(props.cars.list))
+    }, [])
+
+
+
+  // Т.к. не было документации API всю логику пагинаци
+  // добавил на фронтенд
+
+  const currentCars = []
+  const carsCountPerPage = 5
+  const totalCarsCount = cars.length
+  const onPageChange = (e) => {
+    dispatch(setCurrentPage(e))
+  }
+
+  for (let i = (currentPage * carsCountPerPage) - 5; i <= (currentPage * carsCountPerPage) - 1; i++) {
+    currentCars.push(cars[i])
+  }
 
 
   return (
     <>
       <BrandsForm />
+      <Pagination
+        onPageChange={onPageChange}
+        totalCarsCount={totalCarsCount}
+        carsCountPerPage={carsCountPerPage}
+      />
       {
         isLoading ?
 
@@ -24,7 +51,7 @@ export default function Home(props) {
           </div> :
 
           <div className={style.container}>
-            {cars.map(
+            {currentCars.map(
               (e) => <Card
                 key={e._id}
                 engine={e.feedData.engine.engineName}

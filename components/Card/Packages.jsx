@@ -15,7 +15,6 @@ export const Packages = (props) => {
                 <button
                     className={style.descriptionBtn}
                     onClick={() => {
-                        console.log(modalActive);
                         setModalActive(true)
                     }}
                 >
