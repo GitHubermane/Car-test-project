@@ -8,7 +8,7 @@ import style from '../styles/Home.module.scss'
 import { Pagination } from "../components/Pagination";
 
 export default function Home(props) {
-  
+
   const { cars, currentPage } = useSelector((state) => state.Cars)
   const isLoading = useSelector((state) => state.Cars.isLoading)
   const dispatch = useDispatch()
@@ -34,7 +34,6 @@ export default function Home(props) {
     currentCars.push(cars[i])
   }
 
-
   return (
     <>
       <BrandsForm />
@@ -51,23 +50,29 @@ export default function Home(props) {
           </div> :
 
           <div className={style.container}>
-            {currentCars.map(
-              (e) => <Card
-                key={e._id}
-                engine={e.feedData.engine.engineName}
-                transmission={e.feedData.equipmentVariantTransmissionType}
-                colour={e.feedData.colorByClassifierName}
-                price={e.feedData.price}
-                img={e.photobank.imgs[0].url}
-                brand={e.feedData.brandName}
-                model={e.feedData.modelByClassifierName}
-                year={e.feedData.productionYear}
-                modelcode={e.feedData.modelCode}
-                interior={e.feedData.interior.color}
-                photobank={e.photobank.imgs}
-                options={e.feedData.options}
-              />
-            )}
+            {
+              currentCars.map(
+                (e) => (
+                  e ?
+                    <Card
+                      key={e._id}
+                      engine={e.feedData.engine.engineName}
+                      transmission={e.feedData.equipmentVariantTransmissionType}
+                      colour={e.feedData.colorByClassifierName}
+                      price={e.feedData.price}
+                      img={e.photobank.imgs[0].url}
+                      brand={e.feedData.brandName}
+                      model={e.feedData.modelByClassifierName}
+                      year={e.feedData.productionYear}
+                      modelcode={e.feedData.modelCode}
+                      interior={e.feedData.interior.color}
+                      photobank={e.photobank.imgs}
+                      options={e.feedData.options}
+                    /> :
+                    null
+                )
+              )
+            }
           </div>
 
       }
